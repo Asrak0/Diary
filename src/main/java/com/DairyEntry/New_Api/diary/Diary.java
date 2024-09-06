@@ -1,9 +1,10 @@
 package com.DairyEntry.New_Api.diary;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.DairyEntry.New_Api.entry.Entry;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Diary {
@@ -13,7 +14,8 @@ public class Diary {
     private String id;
     private String name;
 
-//    private ArrayList<Entry> entryList;
+    @OneToMany(mappedBy = "diary")
+    private List<Entry> entries;
 
     public Diary() {
     }
@@ -21,7 +23,7 @@ public class Diary {
     public Diary(String id, String name) {
         this.id = id;
         this.name = name;
-//        this.entryList = new ArrayList<>();
+        this.entries = new ArrayList<>();
     }
 
     public String getId() {
@@ -40,4 +42,11 @@ public class Diary {
         this.name = name;
     }
 
+    public List<Entry> getEntries() {
+        return entries;
+    }
+
+    public void setEntries(List<Entry> entries) {
+        this.entries = entries;
+    }
 }
