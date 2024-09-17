@@ -18,11 +18,12 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // Disable CSRF protection (use with caution)
+                .csrf(csrf -> csrf.disable())  // Disable CSRF protection (use with caution)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/**").permitAll() // Allow all requests without authentication
-                        .anyRequest().authenticated()
-                );
+                        .requestMatchers("/", "/oauth2/**", "/health").permitAll()  // Permit OAuth2 paths
+                        .anyRequest().authenticated()  // All other requests need authentication
+                )
+                .oauth2Login();  // Automatically uses Spring's default login page
 
         return http.build();
     }
