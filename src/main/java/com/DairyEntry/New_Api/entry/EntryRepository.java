@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface EntryRepository extends CrudRepository<Entry, String> {
 
-    public List<Entry> findByDiary_Id(String diaryId);
+    public List<Entry> findByDiaryId(String diaryId);
 }

@@ -1,6 +1,7 @@
 package com.DairyEntry.New_Api.diary;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -19,6 +20,7 @@ public class DiaryController {
         return "Returned Success";
     }
 
+    @CrossOrigin
     @RequestMapping("/diaries")
     public List<Diary> getAllDiaries(){
         return diaryService.getAllDiaries();
@@ -34,9 +36,13 @@ public class DiaryController {
         diaryService.addDiary(diary);
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.PUT, value = "/diaries/{id}")
-    public void updateDiary(@RequestBody Diary diary, @PathVariable String id){
+    public ResponseEntity<Diary> updateDiary(@RequestBody Diary diary, @PathVariable String id){
+
+        diary.setId(id);
         diaryService.updateDiary(id, diary);
+        return ResponseEntity.ok(diary);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/diaries/{id}")

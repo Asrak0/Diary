@@ -15,10 +15,7 @@ public class Entry {
     private String date;
     private String time;
     private String description;
-
-    @ManyToOne
-    @JsonIgnore
-    private Diary diary;
+    private String diaryId;
 
     public Entry() {
     }
@@ -29,7 +26,7 @@ public class Entry {
         this.date = date;
         this.time = time;
         this.description = description;
-        this.diary = new Diary(diaryId, "");
+        this.diaryId = diaryId;
     }
 
     public String getId() {
@@ -64,11 +61,16 @@ public class Entry {
         this.description = description;
     }
 
-    public Diary getDiary() {
-        return diary;
+    public String getDiaryId() {
+        return diaryId;
     }
 
-    public void setDiary(Diary diary) {
-        this.diary = diary;
+    public void setDiaryID(String diaryId) {
+        this.diaryId = diaryId;
+    }
+
+    @Override
+    public String toString() {
+        return "Entry{id='" + id + "', date='" + date + "', time='" + time + "', description='" + description + "', diaryId=" + diaryId + "}";
     }
 }
