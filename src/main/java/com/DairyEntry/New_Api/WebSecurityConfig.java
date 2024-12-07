@@ -20,7 +20,7 @@ public class WebSecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())  // Disable CSRF protection (use with caution)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/oauth2/**", "/health").permitAll()  // Permit OAuth2 paths
+                        .requestMatchers("/", "/oauth2/**", "/health", "/diaries/**").permitAll()  // Permit OAuth2 paths
                         .anyRequest().authenticated()  // All other requests need authentication
                 )
                 .oauth2Login();  // Automatically uses Spring's default login page

@@ -14,7 +14,7 @@ public class Diary {
     private String id;
     private String name;
 
-    @OneToMany(mappedBy = "diary")
+    @OneToMany(mappedBy = "diaryId")
     private List<Entry> entries;
 
     public Diary() {

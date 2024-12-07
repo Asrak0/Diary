@@ -15,7 +15,7 @@ public class EntryService {
 
     public List<Entry> getAllEntries(String diaryId){
         List<Entry> entries = new ArrayList<>();
-        entryRepository.findByDiary_Id(diaryId)
+        entryRepository.findByDiaryId(diaryId)
                 .forEach(entries::add);
         return entries;
     }
@@ -28,8 +28,8 @@ public class EntryService {
         entryRepository.save(entry);
     }
 
-    public void updateEntry(Entry entry){
-        entryRepository.save(entry);
+    public Entry updateEntry(Entry entry){
+        return entryRepository.save(entry);
     }
 
     public void deleteEntry(String id){
